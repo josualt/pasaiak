@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <link rel="stylesheet" href="static/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasaiak</title>
+</head>
+<body>  
+  <h1>Pasaiak bro</h1>
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+<footer>    <a href="/about">About</a>
+    <a href="/login">Login</a>
+    <a href="/calculator">Calculator</a>
+    <a href="/private">Private</a></footer>
+</body>
+</html>
