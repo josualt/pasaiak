@@ -21,6 +21,11 @@ def about():
     return render_template('about.html')
 
 
+@app.route('/homework/new')
+def homework_new():
+    return render_template('homework/new.html')
+
+
 @app.route('/<path:path>')
 def all_routes(path):
     return redirect('/')
