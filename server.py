@@ -1,5 +1,5 @@
 import os
-from flask import Flask, send_from_directory, render_template, redirect
+from flask import Flask, send_from_directory, render_template, redirect, request
 
 app = Flask(__name__)
 
@@ -23,6 +23,14 @@ def about():
 
 @app.route('/homework/new')
 def homework_new():
+    return render_template('homework/new.html')
+
+
+@app.route('/homework/save', methods=["POST"])
+def homework_save():
+    name = request.form['name']
+    description = request.form['description']
+    print(f'{name}, {description}')
     return render_template('homework/new.html')
 
 
