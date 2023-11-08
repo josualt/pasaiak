@@ -1,4 +1,5 @@
 import os
+import sqlite3
 from flask import Flask, send_from_directory, render_template, redirect, request
 
 app = Flask(__name__)
@@ -24,6 +25,16 @@ def about():
 @app.route('/homework/new')
 def homework_new():
     return render_template('homework/new.html')
+
+
+@app.route('/homework')
+def homework_index():
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    values = conn.execute('SELECT * FROM homework').fetchall()
+    print(f"See: {values}")
+    return render_template('homework/index.html', homeworks=values)
 
 
 @app.route('/homework/save', methods=["POST"])

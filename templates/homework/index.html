@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block header %}
+     <h1>etxekolan guztiak</h1>
+{% endblock %}
+{% block content %}
+<p>hauek dira etxekolan guztiak</p>
+{% for item in homeworks %}
+<div>{{item[1]}}</div>
+<p>{{item[2]}}</p>
+<hr>
+{% endfor %}
+{% endblock %}
