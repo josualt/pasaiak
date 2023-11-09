@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from random import randint
 from flask import Flask, send_from_directory, render_template, redirect, request
 
 app = Flask(__name__)
@@ -41,8 +42,14 @@ def homework_index():
 def homework_save():
     name = request.form['name']
     description = request.form['description']
+    id = randint(100, 10000000)
     print(f'{name}, {description}')
-    return render_template('homework/new.html')
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    result = cursor.execute(
+        f"insert into homework values({id}, '{name}', '{description}')")
+    conn.commit()
+    return render_template('index.html')
 
 
 @app.route('/<path:path>')
