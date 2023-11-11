@@ -7,6 +7,7 @@
 {% for item in homeworks %}
 <div>{{item[1]}}</div>
 <p>{{item[2]}}</p>
+<div><a href="/homework/delete/{{item[0]}}">borratu</a></div>
 <hr>
 {% endfor %}
 {% endblock %}

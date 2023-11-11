@@ -52,6 +52,17 @@ def homework_save():
     return render_template('index.html')
 
 
+@app.route('/homework/delete/<id>')
+def homework_delete(id):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    values = conn.execute('DELETE FROM homework where id = ' + id).fetchall()
+    conn.commit()
+    print(f"See: {values}")
+    return render_template('index.html')
+
+
 @app.route('/<path:path>')
 def all_routes(path):
     return redirect('/')
