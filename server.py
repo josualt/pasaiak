@@ -63,6 +63,29 @@ def homework_delete(id):
     return render_template('index.html')
 
 
+@app.route('/homework/update/<id>', methods=["GET"])
+def homework_update(id):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    value = conn.execute('select * FROM homework where id = ' + id).fetchall()
+    print(f"See: {value}")
+    return render_template('homework/update.html', homework=value[0])
+
+
+@app.route('/homework/update', methods=["POST"])
+def homework_save_update():
+    id = request.form['id']
+    name = request.form['name']
+    description = request.form['description']
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    value = conn.execute(f"update homework set name='{name}', description='{
+                         description}' where id ={id} ").fetchall()
+    conn.commit()
+    print(f"See: {value}")
+    return render_template('index.html')
+
+
 @app.route('/<path:path>')
 def all_routes(path):
     return redirect('/')
