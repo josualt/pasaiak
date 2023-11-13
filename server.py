@@ -86,6 +86,16 @@ def homework_save_update():
     return render_template('index.html')
 
 
+@app.route('/subjects')
+def subject_index():
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    values = conn.execute('SELECT * FROM subject').fetchall()
+    print(f"See: {values}")
+    return render_template('subjects/index.html', subjects=values)
+
+
 @app.route('/<path:path>')
 def all_routes(path):
     return redirect('/')
