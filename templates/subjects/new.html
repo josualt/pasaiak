@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block header %}
+     <h1>sortu asignaturak</h1>
+{% endblock %}
+{% block content %}
+<p>sortu asignatura</p>
+<form method = "post" action="/subjects/save">
+    <div><label for="name">Ariketaren izena</label></div>
+    <div><input type="text" name="name" id="name"></div>
+    <div><input type="submit" value="send"></div>
+</form>
+{% endblock %}

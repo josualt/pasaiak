@@ -28,6 +28,11 @@ def homework_new():
     return render_template('homework/new.html')
 
 
+@app.route('/subjects/new')
+def subject_new():
+    return render_template('subjects/new.html')
+
+
 @app.route('/homework')
 def homework_index():
     conn = sqlite3.connect("database.db")
@@ -48,6 +53,19 @@ def homework_save():
     cursor = conn.cursor()
     result = cursor.execute(
         f"insert into homework values({id}, '{name}', '{description}')")
+    conn.commit()
+    return render_template('index.html')
+
+
+@app.route('/subjects/save', methods=["POST"])
+def subject_save():
+    name = request.form['name']
+    id = randint(100, 10000000)
+    print(f'{name}, {id}')
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    result = cursor.execute(
+        f"insert into subject values({id}, '{name}')")
     conn.commit()
     return render_template('index.html')
 
