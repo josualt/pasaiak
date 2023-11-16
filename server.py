@@ -81,6 +81,17 @@ def homework_delete(id):
     return render_template('index.html')
 
 
+@app.route('/subjects/delete/<id>')
+def subjects_delete(id):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    values = conn.execute('DELETE FROM subject where id = ' + id).fetchall()
+    conn.commit()
+    print(f"See: {values}")
+    return render_template('index.html')
+
+
 @app.route('/homework/update/<id>', methods=["GET"])
 def homework_update(id):
     conn = sqlite3.connect("database.db")
