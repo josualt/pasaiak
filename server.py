@@ -101,6 +101,15 @@ def homework_update(id):
     return render_template('homework/update.html', homework=value[0])
 
 
+@app.route('/subjects/update/<id>', methods=["GET"])
+def subject_update(id):
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    value = conn.execute('select * FROM subject where id = ' + id).fetchall()
+    print(f"See: {value}")
+    return render_template('subjects/update.html', subject=value[0])
+
+
 @app.route('/homework/update', methods=["POST"])
 def homework_save_update():
     id = request.form['id']
@@ -110,6 +119,19 @@ def homework_save_update():
     cursor = conn.cursor()
     value = conn.execute(f"update homework set name='{name}', description='{
                          description}' where id ={id} ").fetchall()
+    conn.commit()
+    print(f"See: {value}")
+    return render_template('index.html')
+
+
+@app.route('/subjects/update', methods=["POST"])
+def subject_save_update():
+    id = request.form['id']
+    name = request.form['name']
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    value = conn.execute(f"update subject set name='{
+                         name}' where id ={id} ").fetchall()
     conn.commit()
     print(f"See: {value}")
     return render_template('index.html')
