@@ -38,7 +38,8 @@ def homework_index():
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
 
-    values = conn.execute('SELECT * FROM homework').fetchall()
+    values = conn.execute(
+        'SELECT homework.*, subject.name  as subject FROM "homework" inner join subject on subject.id = homework.id_subject').fetchall()
     print(f"See: {values}")
     return render_template('homework/index.html', homeworks=values)
 

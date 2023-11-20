@@ -6,6 +6,7 @@
 <p>hauek dira asignatura guztiak</p>
 {% for item in subjects %}
 <div>{{item[1]}}</div>
+<div>{{item[4]}}</div>
 <p>{{item[2]}}</p>
 <div><a href="/subjects/delete/{{item[0]}}">borratu</a></div>
 <div><a href="/subjects/update/{{item[0]}}">editatu</a></div>
