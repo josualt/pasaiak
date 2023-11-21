@@ -48,12 +48,13 @@ def homework_index():
 def homework_save():
     name = request.form['name']
     description = request.form['description']
+    description = request.form['id_subject']
     id = randint(100, 10000000)
     print(f'{name}, {description}')
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
     result = cursor.execute(
-        f"insert into homework values({id}, '{name}', '{description}')")
+        f"insert into homework values({id}, '{name}', '{description}', {id_subject})")
     conn.commit()
     return render_template('index.html')
 
