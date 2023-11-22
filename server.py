@@ -48,7 +48,7 @@ def homework_index():
 def homework_save():
     name = request.form['name']
     description = request.form['description']
-    description = request.form['id_subject']
+    id_subject = request.form['id_subject']
     id = randint(100, 10000000)
     print(f'{name}, {description}')
     conn = sqlite3.connect("database.db")
@@ -117,10 +117,15 @@ def homework_save_update():
     id = request.form['id']
     name = request.form['name']
     description = request.form['description']
+    id_subject = request.form['id_subject']
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
-    value = conn.execute(f"update homework set name='{name}', description='{
-                         description}' where id ={id} ").fetchall()
+    value = conn.execute(f"update homework 
+    set 
+    name='{name}', 
+    description='{description}' ,
+    subject_id={subject_id}
+    where id ={id} ").fetchall()
     conn.commit()
     print(f"See: {value}")
     return render_template('index.html')
