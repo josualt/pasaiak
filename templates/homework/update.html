@@ -5,13 +5,13 @@
 {% block content %}
 <p>editatu etxekolana</p>
 <form method = "post" action="/homework/update">
-    <input type="hidden" name="id" value='{{homework[0]}}'> 
+    <input type="hidden" name="id" value='{{homework[0]}}'/> 
     <div><label for="name">Ariketaren izena</label></div>
-    <div><input type="text" name="name" id="name"  value='{{homework[1]}}'></div>
+    <div><input type="text" name="name" id="name"  value='{{homework[1]}}'/></div>
 
 
-    <div><label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10">
+    <div><label for="description">Description</label></div>
+        <div><textarea name="description" id="description" cols="30" rows="10">
             {{homework[2]}}
         </textarea></div>
 

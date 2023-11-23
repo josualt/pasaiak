@@ -120,12 +120,8 @@ def homework_save_update():
     id_subject = request.form['id_subject']
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
-    value = conn.execute(f"update homework 
-    set 
-    name='{name}', 
-    description='{description}' ,
-    subject_id={subject_id}
-    where id ={id} ").fetchall()
+    value = conn.execute(f"update homework set name='{name}', description='{
+                         description}' ,id_subject={id_subject} where id ={id} ").fetchall()
     conn.commit()
     print(f"See: {value}")
     return render_template('index.html')
