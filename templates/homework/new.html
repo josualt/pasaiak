@@ -12,7 +12,13 @@
     <div><textarea name="description" id="description" cols="30" rows="10"></textarea></div>
     
 <div><label for="id_subject">Asignaturaren kodea</label></div>
-    <div><input type="number" name="id_subject" id="id_subject"></div>
+    <div>
+        <select name="id_subject" id="id_subject">
+        {% for subject in subjects %}
+        <option value="{{subject[0]}}">{{subject[1]}}</option>
+{% endfor %}
+</select>
+    </div>
 
     <div><input type="submit" value="send"></div>
 </form>

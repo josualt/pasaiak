@@ -25,7 +25,11 @@ def about():
 
 @app.route('/homework/new')
 def homework_new():
-    return render_template('homework/new.html')
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    values = conn.execute('SELECT * FROM subject').fetchall()
+    return render_template('homework/new.html', subjects=values)
 
 
 @app.route('/subjects/new')
