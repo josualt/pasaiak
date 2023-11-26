@@ -104,7 +104,8 @@ def homework_update(id):
     cursor = conn.cursor()
     value = conn.execute('select * FROM homework where id = ' + id).fetchall()
     print(f"See: {value}")
-    return render_template('homework/update.html', homework=value[0])
+    values = conn.execute('SELECT * FROM subject').fetchall()
+    return render_template('homework/update.html', homework=value[0], subjects=values)
 
 
 @app.route('/subjects/update/<id>', methods=["GET"])
