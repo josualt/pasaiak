@@ -37,6 +37,11 @@ def subject_new():
     return render_template('subjects/new.html')
 
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+
 @app.route('/homework')
 def homework_index():
     conn = sqlite3.connect("database.db")

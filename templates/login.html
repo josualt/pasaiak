@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block header %}
+     <h1>sesioa hasi</h1>
+{% endblock %}
+{% block content %}
+<div>
+    <form method = "post" action="/login">
+        <div><label for="email">Email</label></div>
+        <div><input type="email" name="email" id="email"></div>
+
+        <div><label for="password">Pasahitza</label></div>
+        <div><input type="password" name="password" id="password"></div>
+
+        <div><input type="submit" value="send"></div>
+    </form>
+</div>
+{% endblock %}
