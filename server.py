@@ -42,6 +42,18 @@ def login():
     return render_template('login.html')
 
 
+@app.route('/login', methods=["POST"])
+def check_login():
+    email = request.form['email']
+    password = request.form['password']
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    result = cursor.execute(
+        f"select * from users  where email = '{email}' and password = '{password}'")
+    print(f"{result}")
+    return render_template('login.html')
+
+
 @app.route('/homework')
 def homework_index():
     conn = sqlite3.connect("database.db")
