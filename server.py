@@ -1,11 +1,12 @@
 import os
 import sqlite3
 from random import randint
-from flask import Flask, send_from_directory, render_template, redirect, request
+from flask import Flask, send_from_directory, render_template, redirect, request, session
 
 app = Flask(__name__)
 
 port = int(os.environ.get("PORT", 5000))
+app.secret_key = 'BAD_SECRET_KEY'
 
 
 @app.route('/static/<path:path>')
@@ -48,10 +49,15 @@ def check_login():
     password = request.form['password']
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
+    print(email, password)
     result = cursor.execute(
-        f"select * from users  where email = '{email}' and password = '{password}'")
+        f"select * from users  where email = '{email}' and password = '{password}'").fetchall()
     print(f"{result}")
-    return render_template('login.html')
+    if result and result[0][0] is not None:
+        session['user'] = result[0][0]
+        return redirect('/homework')
+    else:
+        return render_template('login.html', mezu='Pasahitza desegokia')
 
 
 @app.route('/homework')
